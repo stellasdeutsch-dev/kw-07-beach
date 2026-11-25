@@ -50,4 +50,8 @@ node qa/compare.mjs
 `interact` кликает FAQ, галерею, лайтбокс, меню и проверяет «уменьшить движение». `compare` кладёт образец и копию рядом в `qa/compare/`.
 
 ## Публикация
-Репозиторий `stellasdeutsch-dev/kw-07-beach`, GitHub Pages из папки `gh/` через GitHub Actions (`.github/workflows/pages.yml`).
+Репозиторий `stellasdeutsch-dev/kw-07-beach`. В `main` весь проект, GitHub Pages берёт ветку `gh-pages`: это содержимое папки `gh/`.
+После правок:
+```bash
+git add -A && git commit -m "..." && git push && git subtree split --prefix gh -b gh-pages && git push -f origin gh-pages
+```
