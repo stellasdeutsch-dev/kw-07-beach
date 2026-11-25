@@ -97,7 +97,7 @@
     b.items.forEach(function (t, i) { (i % 2 ? right : left).push(card(t, i)); });
     var p = b.phone;
     var msgs = p.messages.map(function (m) {
-      return '<div class="msg msg--' + m.from + '"><span>' + esc(m.text) + "</span>" + (m.note ? "<small>" + esc(m.note) + "</small>" : "") + "</div>";
+      return '<div class="msg msg--' + m.from + '"><span lang="' + esc(C.meta.exampleLang || "en") + '">' + esc(m.text) + "</span>" + (m.note ? "<small>" + esc(m.note) + "</small>" : "") + "</div>";
     }).join("");
     var phone = '<div class="phone reveal">' + img(p.image, p.alt, 520, 709, "phone__img") +
       '<div class="phone__screen"><div class="chat__head"><span class="chat__ava">' + icon("chat") + '</span><span class="chat__name">' + esc(p.chatName) + '</span></div><div class="chat__body">' + msgs + "</div></div></div>";
@@ -135,7 +135,7 @@
     return '<section class="sec sec--gallery" id="' + b.id + '" data-block="Реклама платформы"><div class="ribbon" aria-hidden="true"><span>' + esc(rib) + '</span></div><div class="ribbon ribbon--2" aria-hidden="true"><span>' + esc(rib) + '</span></div><div class="wrap">' +
       h2(b.title) + sub(b.subtitle) + '<div class="gallery reveal">' + pages + '</div><div class="gnav reveal"><button type="button" class="gnav__arr" data-step="-1" aria-label="Назад">' + icon("left") + "</button>" + dots +
       '<button type="button" class="gnav__arr" data-step="1" aria-label="Дальше">' + icon("right") + "</button></div>" +
-      '<div class="facts reveal"><div class="facts__l"><p class="facts__big">' + esc(b.left.big) + ' <span class="facts__stars">' + icon("star") + icon("star") + icon("star") + icon("star") + icon("star") + '</span></p><p class="facts__sub">' + rich(b.left.sub) + '</p><a class="glink" ' + a(b.left.link.href) + ">" + esc(b.left.link.text) + " " + icon("right") + "</a></div>" +
+      '<div class="facts reveal"><div class="facts__l"><p class="facts__big">' + esc(b.left.big) + '</p><p class="facts__sub">' + rich(b.left.sub) + '</p><a class="glink" ' + a(b.left.link.href) + ">" + esc(b.left.link.text) + " " + icon("right") + "</a></div>" +
       '<p class="facts__box">' + rich(b.box) + '</p><div class="facts__r"><p>' + rich(b.right.text) + '</p><a class="glink" ' + a(b.right.link.href) + ">" + esc(b.right.link.text) + " " + icon("right") + "</a></div></div>" +
       "</div></section>";
   };
@@ -186,7 +186,7 @@
   function header() {
     var h = C.header;
     var menu = h.menu.filter(visible).map(function (m) { return '<li><a href="' + m.href + '">' + esc(m.text) + "</a></li>"; }).join("");
-    var contact = PAGE === "lesson" ? "" : '<a class="hdr__ic" ' + a(h.contactLink) + ' aria-label="' + esc(h.contactLabel) + '">' + icon("chat") + "</a>";
+    var contact = PAGE === "lesson" || !h.contactLink || !C.links[h.contactLink] ? "" : '<a class="hdr__ic" ' + a(h.contactLink) + ' aria-label="' + esc(h.contactLabel) + '">' + icon("chat") + "</a>";
     return '<header class="hdr" data-block="Шапка"><div class="wrap hdr__in"><a class="hdr__logo" href="#top">' + esc(h.logo) + '</a><div class="hdr__r">' + contact +
       '<button class="hdr__ic hdr__burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Меню">' + icon("menu", "ic-open") + icon("close", "ic-close") + "</button></div></div>" +
       '<nav class="menu" id="menu" hidden><ul>' + menu + "</ul></nav></header>";

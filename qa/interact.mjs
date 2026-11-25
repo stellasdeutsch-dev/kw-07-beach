@@ -3,7 +3,7 @@ import { chromium } from '/Users/shyngysnarseyit/Downloads/alterna/pdf-guides/no
 const b = await chromium.launch({ channel: 'chrome', args: ['--mute-audio'] });
 const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
 const errs = []; p.on('pageerror', e => errs.push(e.message));
-await p.goto('http://localhost:4707/', { waitUntil: 'networkidle' });
+await p.goto('http://localhost:4707/en/', { waitUntil: 'networkidle' });
 const r = {};
 await p.click('.qa:nth-child(1) .qa__q'); await p.waitForTimeout(400);
 r.faqOpen = await p.$eval('.qa:nth-child(1)', e => e.classList.contains('is-open') && e.querySelector('.qa__a').getBoundingClientRect().height > 20);
@@ -20,7 +20,7 @@ r.menuOpen = await p.$eval('.menu', e => !e.hidden && e.querySelectorAll('a').le
 await p.click('.menu a[href="#faq"]'); await p.waitForTimeout(2500);
 r.menuNav = await p.evaluate(() => Math.round(document.querySelector("#faq").getBoundingClientRect().top));
 const q = await b.newPage({ viewport: { width: 390, height: 800 }, reducedMotion: 'reduce' });
-await q.goto('http://localhost:4707/lesson/', { waitUntil: 'networkidle' });
+await q.goto('http://localhost:4707/en/lesson/', { waitUntil: 'networkidle' });
 r.reducedMotion = await q.evaluate(() => getComputedStyle(document.querySelector('.ring')).animationName === 'none' && getComputedStyle(document.querySelector('.reveal')).opacity === '1');
 r.lessonNoAd = await q.evaluate(() => !document.querySelector('#inside,#includes,#faq,a[href*="lava.top"]') && !!document.querySelector('#end'));
 r.errors = errs;

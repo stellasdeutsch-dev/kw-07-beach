@@ -1,6 +1,15 @@
-/ 1440 ok scrollWidth 1440 imgs 30 broken 0 lava-links 6 console-errors 0
-/ 834 ok scrollWidth 834 imgs 30 broken 0 lava-links 6 console-errors 0
-/ 390 ok scrollWidth 390 imgs 30 broken 0 lava-links 6 console-errors 0
-lesson/ 1440 ok scrollWidth 1440 imgs 13 broken 0 lava-links 0 console-errors 0
-lesson/ 834 ok scrollWidth 834 imgs 13 broken 0 lava-links 0 console-errors 0
-lesson/ 390 ok scrollWidth 390 imgs 13 broken 0 lava-links 0 console-errors 0
+en/ 1440 ok sw 1440 imgs 30 broken 0 lava 4 lavaOk True err 0 []
+en/ 834 ok sw 834 imgs 30 broken 0 lava 4 lavaOk True err 0 []
+en/ 390 ok sw 390 imgs 30 broken 0 lava 4 lavaOk True err 0 []
+en/lesson/ 1440 ok sw 1440 imgs 13 broken 0 lava 0 lavaOk True err 0 []
+en/lesson/ 834 ok sw 834 imgs 13 broken 0 lava 0 lavaOk True err 0 []
+en/lesson/ 390 ok sw 390 imgs 13 broken 0 lava 0 lavaOk True err 0 []
+tr/ 1440 ok sw 1440 imgs 30 broken 0 lava 4 lavaOk True err 0 []
+tr/ 834 ok sw 834 imgs 30 broken 0 lava 4 lavaOk True err 0 []
+tr/ 390 ok sw 390 imgs 30 broken 0 lava 4 lavaOk True err 0 []
+tr/lesson/ 1440 ok sw 1440 imgs 13 broken 0 lava 0 lavaOk True err 0 []
+tr/lesson/ 834 ok sw 834 imgs 13 broken 0 lava 0 lavaOk True err 0 []
+tr/lesson/ 390 ok sw 390 imgs 13 broken 0 lava 0 lavaOk True err 0 []
+{'page': 'redirect /', 'ok': True, 'to': 'http://localhost:4707/en/'}
+{'page': 'redirect /lesson/', 'ok': True, 'to': 'http://localhost:4707/en/lesson/'}
+passed 14 of 14

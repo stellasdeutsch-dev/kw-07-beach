@@ -6,7 +6,7 @@ const base = process.argv[2] || 'http://localhost:4707/';
 const out = new URL('./shots/', import.meta.url).pathname; mkdirSync(out, { recursive: true });
 const b = await chromium.launch({ channel: 'chrome', args: ['--mute-audio'] });
 const results = [];
-for (const page of ['', 'lesson/']) {
+for (const page of ['en/', 'en/lesson/', 'tr/', 'tr/lesson/']) {
   for (const w of [1440, 834, 390]) {
     const ctx = await b.newContext({ viewport: { width: w, height: 900 }, deviceScaleFactor: 1 });
     const p = await ctx.newPage();
@@ -27,14 +27,21 @@ for (const page of ['', 'lesson/']) {
       const wide = [...document.querySelectorAll('body *')].filter(e => { const r = e.getBoundingClientRect(); return r.right > document.documentElement.clientWidth + 1 && getComputedStyle(e).position !== 'fixed' && !e.closest('.ribbon,.hero__bg,.checks__bg,.promo__bg,.lb'); }).slice(0, 5).map(e => e.className || e.tagName);
       return { scrollWidth: document.documentElement.scrollWidth, imgs: imgs.length, broken, lava: [...new Set(lava)], lavaCount: lava.length, wide, h: document.body.scrollHeight, title: document.title };
     });
-    const name = (page ? 'lesson' : 'main') + '_' + w;
+    const name = page.replace(/\//g, '_').replace(/_$/, '') + '_' + w;
     await p.screenshot({ path: out + name + '_full.png', fullPage: true });
     await p.screenshot({ path: out + name + '_first.png' });
     const ad = await p.$('#inside');
     if (ad) { await ad.scrollIntoViewIfNeeded(); await p.waitForTimeout(300); await p.screenshot({ path: out + name + '_ad.png' }); }
-    results.push({ page: page || '/', w, ok: r.scrollWidth === w && !r.broken.length && !errors.length, ...r, errors });
+    const wantLava = page.startsWith('en') ? '2c950aa0' : '2cdbb9f8', badLava = page.startsWith('en') ? '2cdbb9f8' : '2c950aa0';
+    const lavaOk = page.includes('lesson') ? r.lavaCount === 0 : (r.lava.every(u => u.includes(wantLava)) && r.lavaCount > 0 && !r.lava.some(u => u.includes(badLava)));
+    results.push({ page, w, ok: r.scrollWidth === w && !r.broken.length && !errors.length && lavaOk, lavaOk, ...r, errors });
     await ctx.close();
   }
+}
+// переадресации со старых адресов
+for (const [from, to] of [['', 'en/'], ['lesson/', 'en/lesson/']]) {
+  const p = await b.newPage(); await p.goto(base + from, { waitUntil: 'load' }); await p.waitForTimeout(400);
+  results.push({ page: 'redirect /' + from, ok: p.url().endsWith(to), to: p.url() }); await p.close();
 }
 await b.close();
 for (const r of results) console.log(JSON.stringify(r));
