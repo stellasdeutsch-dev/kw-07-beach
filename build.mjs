@@ -1,6 +1,6 @@
 // Сборка сайта 07: node build.mjs
-// Берёт gh/content.en.json и gh/content.tr.json и пишет gh/en/, gh/en/lesson/, gh/tr/, gh/tr/lesson/.
-// Корень gh/ и старый gh/lesson/ переадресуют на /en/.
+// Берёт gh/content.en.json и gh/content.tr.json и пишет gh/en/ и gh/tr/ (обе с рекламой, версий без рекламы нет).
+// Корень gh/ и старый gh/lesson/ переадресуют на /en/, старые /en/lesson/ и /tr/lesson/ на свою вариацию.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 const root = new URL('./gh/', import.meta.url).pathname;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
@@ -52,14 +52,15 @@ function redirect(to) {
 const out = [];
 for (const lang of ['en', 'tr']) {
   const content = JSON.parse(readFileSync(root + `content.${lang}.json`, 'utf8'));
-  for (const [dir, pg, base, title] of [[lang, 'main', '../', content.meta.title], [lang + '/lesson', 'lesson', '../../', content.meta.lessonTitle]]) {
-    mkdirSync(root + dir, { recursive: true });
-    writeFileSync(root + dir + '/index.html', page({ content, page: pg, base, title }));
-    out.push(dir + '/');
-  }
+  mkdirSync(root + lang, { recursive: true });
+  writeFileSync(root + lang + '/index.html', page({ content, page: 'main', base: '../', title: content.meta.title }));
+  out.push(lang + '/');
+  mkdirSync(root + lang + '/lesson', { recursive: true });
+  writeFileSync(root + lang + '/lesson/index.html', redirect('../'));
+  out.push(lang + '/lesson/ → ' + lang + '/');
 }
 writeFileSync(root + 'index.html', redirect('en/'));
 mkdirSync(root + 'lesson', { recursive: true });
-writeFileSync(root + 'lesson/index.html', redirect('../en/lesson/'));
-out.push('index.html → en/', 'lesson/ → en/lesson/');
+writeFileSync(root + 'lesson/index.html', redirect('../en/'));
+out.push('index.html → en/', 'lesson/ → en/');
 console.log('built:', out.join(', '));

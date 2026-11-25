@@ -137,9 +137,9 @@ b { color: var(--ink); font-weight: 600; }
 .point:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
 .num { position: absolute; left: 18px; top: 0; width: 53px; height: 50px; display: grid; place-items: center; border-radius: 0 0 8px 8px; background: #f2d998;
   font: 400 34px/1 var(--font-title); color: var(--gold-dark); letter-spacing: .02em; }
-.phone { position: relative; width: 420px; margin: 0 0 0 -6px; z-index: 1; }
+.phone { position: relative; width: 290px; margin: 0 auto; z-index: 1; }
 .phone__img { width: 100%; }
-.phone__screen { position: absolute; left: 15.6%; width: 50%; top: 3.6%; height: 75%; border-radius: 26px; overflow: hidden; background: #efe6d8; display: flex; flex-direction: column; }
+.phone__screen { position: absolute; left: 6.9%; width: 86.2%; top: 3.4%; height: 93%; border-radius: 30px; overflow: hidden; background: #efe6d8; display: flex; flex-direction: column; }
 .chat__head { display: flex; align-items: center; gap: 8px; padding: 30px 12px 10px; background: #2f6f53; color: #fff; }
 .chat__ava { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #fff; color: #2f6f53; }
 .chat__ava .ic { width: 15px; height: 15px; }
@@ -333,7 +333,7 @@ b { color: var(--ink); font-weight: 600; }
   :root { --wrap: 760px; --h2: 58px; --hero: 62px; }
   .hero__copy { left: 300px; width: 460px; }
   .points { grid-template-columns: 175px 1fr 175px; }
-  .phone { width: 400px; margin-left: -10px; }
+  .phone { width: 270px; }
   .checks { grid-template-columns: 270px 270px; }
   .steps__podium { left: 90px; }
   .step--1 { left: 150px; } .step--2 { left: 390px; } .step--3 { left: 130px; }
@@ -384,7 +384,7 @@ b { color: var(--ink); font-weight: 600; }
 
   .sec--points { padding-top: 100px; }
   .points { grid-template-columns: 1fr 1fr; gap: 14px; }
-  .phone { grid-column: 1 / -1; order: -1; width: min(330px, 100%); margin: 0 auto; }
+  .phone { grid-column: 1 / -1; order: -1; width: min(260px, 100%); margin: 0 auto; }
   .points__col { gap: 14px; }
   .point { min-height: 150px; padding: 66px 14px 14px; font-size: 15px; }
   .num { left: 14px; }
