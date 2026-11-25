@@ -82,7 +82,7 @@
 
   R.audience = function (b) {
     var cards = b.cards.map(function (c, i) {
-      return '<li class="who reveal" style="--d:' + i * 70 + 'ms"><div class="who__card"><div class="who__pic">' + img(c.img, c.alt, 300, 400) + '</div><p class="who__tx">' + esc(c.text) + '</p></div><div class="who__base"></div></li>';
+      return '<li class="who reveal" style="--d:' + i * 70 + 'ms"><div class="who__card"><div class="who__pic">' + img(c.img, c.alt, 300, 284) + '</div><p class="who__tx">' + esc(c.text) + '</p></div><div class="who__base"></div></li>';
     }).join("");
     return '<section class="sec sec--panel sec--who" id="' + b.id + '" data-block="Кому пригодится"><div class="wrap">' + h2(b.title) + sub(b.subtitle) +
       '<ul class="who-list">' + cards + "</ul>" + row(b.row) + "</div></section>";
@@ -99,7 +99,7 @@
     var msgs = p.messages.map(function (m) {
       return '<div class="msg msg--' + m.from + '"><span lang="' + esc(C.meta.exampleLang || "en") + '">' + esc(m.text) + "</span>" + (m.note ? "<small>" + esc(m.note) + "</small>" : "") + "</div>";
     }).join("");
-    var phone = '<div class="phone reveal">' + img(p.image, p.alt, 520, 709, "phone__img") +
+    var phone = '<div class="phone reveal">' + img(p.image, p.alt, 540, 980, "phone__img") +
       '<div class="phone__screen"><div class="chat__head"><span class="chat__ava">' + icon("chat") + '</span><span class="chat__name">' + esc(p.chatName) + '</span></div><div class="chat__body">' + msgs + "</div></div></div>";
     var pills = b.pills ? '<div class="pills reveal"><span class="opill">' + esc(b.pills[0]) + '</span><p class="pills__note">' + rich(b.pillsNote) + '</p><span class="opill">' + esc(b.pills[1]) + "</span></div>" : "";
     return '<section class="sec sec--points" id="' + b.id + '" data-block="Главное за минуту"><div class="wrap">' + h2(b.title) +
@@ -142,7 +142,7 @@
 
   R.pains = function (b) {
     var cards = b.cards.map(function (c, i) {
-      return '<li class="pain reveal" style="--d:' + i * 90 + 'ms"><span class="pain__x">' + icon("cross") + '</span><h3>' + rich(c.title) + '</h3><p>' + rich(c.text) + "</p>" + img(c.img, c.alt, 360, 400, "pain__img") + "</li>";
+      return '<li class="pain reveal" style="--d:' + i * 90 + 'ms"><span class="pain__x">' + icon("cross") + '</span><h3>' + rich(c.title) + '</h3><p>' + rich(c.text) + "</p>" + img(c.img, c.alt, 380, 356, "pain__img") + "</li>";
     }).join("");
     return '<section class="sec sec--pains" id="' + b.id + '" data-block="Честный блок"><div class="wrap">' + h2(b.title) + sub(b.subtitle) + '<ul class="pains">' + cards + "</ul></div></section>";
   };
@@ -167,7 +167,7 @@
 
   R.bonus = function (b) {
     var cards = b.cards.map(function (c, i) {
-      return '<li class="bonus reveal" style="--d:' + (i % 2) * 90 + 'ms"><span class="bonus__n">' + esc(c.num) + '</span><p>' + rich(c.text) + "</p>" + img(c.img, c.alt, 340, 360, "bonus__img") + "</li>";
+      return '<li class="bonus reveal" style="--d:' + (i % 2) * 90 + 'ms"><span class="bonus__n">' + esc(c.num) + '</span><p>' + rich(c.text) + "</p>" + img(c.img, c.alt, 340, 344, "bonus__img") + "</li>";
     }).join("");
     return '<section class="sec sec--bonus" id="' + b.id + '" data-block="Ещё внутри"><div class="wrap">' + h2(b.title) + sub(b.subtitle) + '<ul class="bonuses">' + cards + "</ul></div></section>";
   };
