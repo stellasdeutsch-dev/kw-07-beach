@@ -35,7 +35,7 @@
     question: '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.4a2.5 2.5 0 1 1 3.4 2.4c-.6.3-1 .8-1 1.5v.4"/><path d="M12 16.8v.2"/>',
     expand: '<path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/>'
   };
-  function icon(n, cls) { return '<svg class="ic' + (cls ? " " + cls : "") + '" viewBox="0 0 24 24" aria-hidden="true">' + I[n] + "</svg>"; }
+  function icon(n, cls) { return '<svg class="ic' + (cls ? " " + cls : "") + '" data-icon="' + n + '" viewBox="0 0 24 24" aria-hidden="true">' + I[n] + "</svg>"; }
 
   function button(b, cls) {
     if (!b) return "";

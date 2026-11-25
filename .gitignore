@@ -3,3 +3,8 @@ design/
 qa/compare/
 qa/shots/
 .DS_Store
+qa/figma/png/
+qa/figma/call_*.js
+qa/figma/data_*.js
+qa/figma/*.json
+qa/figma/figma_*.png

@@ -5,7 +5,8 @@
 
 - С рекламой: `gh/index.html` → https://stellasdeutsch-dev.github.io/kw-07-beach/
 - Без рекламы: `gh/lesson/index.html` → https://stellasdeutsch-dev.github.io/kw-07-beach/lesson/
-- Образец: `design/` (`ref_*.webp` скриншоты, `design_*` модули Behance в полном размере)
+- Образец: `design/` (`ref_*.webp` скриншоты, `design_*` модули Behance в полном размере). Только локально, в репозиторий не попадает.
+- Figma: https://www.figma.com/design/AvbKNqOKw8z1q3Ac4NgLke (файл `kw-07-beach`)
 
 ## Как поменять
 | Что | Где |
@@ -32,6 +33,12 @@
 ## Шрифты
 - Заголовки: «Stellas Tall» (`gh/assets/fonts/stellas-tall.woff`). Это свободный Noto Serif Display (OFL), сжатый по ширине до 60 %: в Google Fonts нет узкого контрастного шрифта с кириллицей, как в образце. Скрипт сборки: `qa/font/mk.py`.
 - Текст: Montserrat (подмножество латиница и кириллица).
+
+## Figma
+Секции «Главная (с рекламой)» и «Урок (без рекламы)», в каждой кадры 1440, 834, 390. Слои названы по смыслу (Шапка, Первый экран, Реклама платформы, Подвал, Icon / …).
+Цвета это переменные «Цвета сайта» (те же, что `:root` в CSS), тексты на стилях «Заголовок / N» и «Текст / N». Кнопки это компоненты «Кнопка / Читать | Дальше | Купить / размер».
+Заголовки в Figma набраны Sofia Sans Extra Condensed Light: «Stellas Tall» нельзя загрузить в Figma через API. Поставь `qa/font/StellasTall-Regular.ttf` на компьютер и поменяй семейство в стилях «Заголовок / …».
+Перенос страницы в Figma: `qa/figma/export.mjs` (выгрузка из браузера), `qa/figma/pack.py` (сжатие), `qa/figma/builder.js` (сборка в Figma через use_figma).
 
 ## Проверка
 ```bash
