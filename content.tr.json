@@ -64,6 +64,10 @@
         "text": "Начать читать",
         "href": "#who",
         "icon": "book"
+      },
+      "author": {
+        "img": "assets/img/author-timur.webp",
+        "alt": "Тимур с ноутбуком, на экране платформа Alterna"
       }
     },
     {

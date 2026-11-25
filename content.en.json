@@ -61,6 +61,10 @@
         "text": "Начать читать",
         "href": "#who",
         "icon": "book"
+      },
+      "author": {
+        "img": "assets/img/author-dias.webp",
+        "alt": "Диас у озера: белая кепка, рубашка в полоску"
       }
     },
     {
