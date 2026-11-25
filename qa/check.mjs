@@ -29,7 +29,7 @@ for (const page of ['en/', 'tr/']) {
       const lava = [...document.querySelectorAll('a[href*="lava.top"]')].map(a => a.href);
       const wide = [...document.querySelectorAll('body *')].filter(e => { const r = e.getBoundingClientRect(); return r.right > document.documentElement.clientWidth + 1 && getComputedStyle(e).position !== 'fixed' && !e.closest('.ribbon,.hero__bg,.checks__bg,.promo__bg,.lb'); }).slice(0, 5).map(e => e.className || e.tagName);
       const text = document.body.innerText + ' ' + imgs.map(i => i.alt).join(' ') + ' ' + document.title;
-      const money = (text.match(/.{0,20}(\$|USD|₸|₽|руб|тенге|доллар|в месяц|\/ ?мес|ежемесяч).{0,20}/gi) || []).concat((text.match(/\d+[\s ]*€/g) || []).filter(x => !/^30[\s ]*€$/.test(x)));
+      const money = (text.match(/.{0,20}(\$|USD|₸|₽|руб\.|рубл|тенге|доллар|в месяц|\/ ?мес|ежемесяч).{0,20}/gi) || []).concat((text.match(/\d+[\s ]*€/g) || []).filter(x => !/^30[\s ]*€$/.test(x)));
       const author = (text.match(/Тимур|Timur/g) || []).length + ':' + (text.match(/Диас|Dias/g) || []).length;
       return { srcs: [...new Set(imgs.map(i => (i.getAttribute('src') || '').split('/').pop()))], money, author, scrollWidth: document.documentElement.scrollWidth, imgs: imgs.length, broken, lava: [...new Set(lava)], lavaCount: lava.length, wide, h: document.body.scrollHeight, title: document.title };
     });

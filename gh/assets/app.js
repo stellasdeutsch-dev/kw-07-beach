@@ -77,6 +77,7 @@
         '<div class="badge" aria-hidden="true">' + ring(b.badge.ring, "ring-hero") + scallop("badge__shape") +
           '<span class="badge__big">' + esc(b.badge.big) + '</span><span class="badge__small">' + rich(b.badge.small) + "</span></div>" +
         '<div class="hero__copy"><h1 class="hero__title">' + lines + "</h1>" + button(b.button, "btn--hero") + "</div>" +
+        (b.author ? '<figure class="hero__author">' + img(b.author.img, b.author.alt, 600, 800, "", true) + "</figure>" : "") +
       "</div></section>";
   };
 

@@ -103,6 +103,10 @@ b { color: var(--ink); font-weight: 600; }
 .pill { display: inline-flex; align-items: center; vertical-align: middle; height: 48px; margin-left: 10px; padding: 0 18px; border: 2px solid rgba(255, 255, 255, .85); border-radius: 999px;
   font: 500 15px/1 var(--font-text); letter-spacing: .03em; font-style: normal; text-shadow: none; transform: translateY(-8px); }
 .btn--hero { margin-top: 36px; }
+/* Фото автора целиком, со своим фоном, в рамке как у скриншотов (люди не вырезаются) */
+.hero__author { position: absolute; left: 56px; top: 236px; width: 252px; aspect-ratio: 3 / 4; margin: 0; border-radius: 40px; overflow: hidden; border: 3px solid #fff; box-shadow: var(--shadow); background: #dbe9f5; }
+.hero__author img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.badge { z-index: 1; }
 .badge { position: absolute; left: 4px; top: 128px; width: 168px; height: 168px; display: grid; place-items: center; color: #23476a; }
 .ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 40s linear infinite; }
 .ring text { font: 600 14px var(--font-text); letter-spacing: .32em; fill: #fff; text-transform: uppercase; }
@@ -332,6 +336,7 @@ b { color: var(--ink); font-weight: 600; }
 @media (max-width: 1100px) {
   :root { --wrap: 760px; --h2: 58px; --hero: 62px; }
   .hero__copy { left: 300px; width: 460px; }
+  .hero__author { left: 36px; top: 250px; width: 220px; }
   .points { grid-template-columns: 175px 1fr 175px; }
   .phone { width: 270px; }
   .checks { grid-template-columns: 270px 270px; }
@@ -368,6 +373,7 @@ b { color: var(--ink); font-weight: 600; }
   .hero__line { white-space: normal; }
   .pill { display: flex; width: max-content; margin: 14px auto 0; height: 42px; font-size: 13px; transform: none; }
   .btn--hero { margin-top: 26px; }
+  .hero__author { position: relative; left: auto; top: auto; width: min(200px, 60%); margin: 22px auto 76px; border-radius: 30px; }
   .badge { left: auto; right: 0; top: 74px; width: 120px; height: 120px; }
   .badge__shape { inset: 13px; width: calc(100% - 26px); height: calc(100% - 26px); }
   .ring text { font-size: 15px; }
