@@ -144,7 +144,7 @@
     var cards = b.cards.map(function (c, i) {
       return '<li class="pain reveal" style="--d:' + i * 90 + 'ms"><span class="pain__x">' + icon("cross") + '</span><h3>' + rich(c.title) + '</h3><p>' + rich(c.text) + "</p>" + img(c.img, c.alt, 360, 400, "pain__img") + "</li>";
     }).join("");
-    return '<section class="sec sec--pains" id="' + b.id + '" data-block="Почему не получалось"><div class="wrap">' + h2(b.title) + sub(b.subtitle) + '<ul class="pains">' + cards + "</ul></div></section>";
+    return '<section class="sec sec--pains" id="' + b.id + '" data-block="Честный блок"><div class="wrap">' + h2(b.title) + sub(b.subtitle) + '<ul class="pains">' + cards + "</ul></div></section>";
   };
 
   R.promise = function (b) {
@@ -154,7 +154,7 @@
 
   R.includes = function (b) {
     function list(items, cls) { return '<ul class="inc__list ' + cls + '">' + items.map(function (t) { return "<li>" + icon("check") + "<span>" + rich(t) + "</span></li>"; }).join("") + "</ul>"; }
-    return '<section class="sec sec--includes" id="' + b.id + '" data-block="Что входит"><div class="wrap">' + h2(b.title) +
+    return '<section class="sec sec--includes" id="' + b.id + '" data-block="Что есть и кому подойдёт"><div class="wrap">' + h2(b.title) +
       '<div class="inc reveal"><div class="inc__card inc__card--w"><p class="inc__name">' + rich(b.left.name) + "</p>" + list(b.left.items, "inc__list--gold") + "</div>" +
       '<div class="inc__card inc__card--b"><span class="inc__star">' + icon("star") + '</span><p class="inc__intro">' + rich(b.right.intro) + "</p>" + list(b.right.items, "inc__list--blue") + "</div></div>" +
       '<div class="ticket reveal"><span>' + esc(b.ticket.left) + '</span><i></i><span>' + esc(b.ticket.right) + '</span><small>' + esc(b.ticket.note) + "</small></div></div></section>";

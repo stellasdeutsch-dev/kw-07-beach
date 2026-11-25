@@ -1,6 +1,14 @@
-LIVE / 1440 ok scrollWidth 1440 imgs 30 broken 0 lava 6 errors 0
-LIVE / 834 ok scrollWidth 834 imgs 30 broken 0 lava 6 errors 0
-LIVE / 390 ok scrollWidth 390 imgs 30 broken 0 lava 6 errors 0
-LIVE lesson/ 1440 ok scrollWidth 1440 imgs 13 broken 0 lava 0 errors 0
-LIVE lesson/ 834 ok scrollWidth 834 imgs 13 broken 0 lava 0 errors 0
-LIVE lesson/ 390 ok scrollWidth 390 imgs 13 broken 0 lava 0 errors 0
+LIVE en/ 1440 ok sw 1440 imgs 30 broken 0 lava 4 errors 0
+LIVE en/ 834 ok sw 834 imgs 30 broken 0 lava 4 errors 0
+LIVE en/ 390 ok sw 390 imgs 30 broken 0 lava 4 errors 0
+LIVE en/lesson/ 1440 ok sw 1440 imgs 13 broken 0 lava 0 errors 0
+LIVE en/lesson/ 834 ok sw 834 imgs 13 broken 0 lava 0 errors 0
+LIVE en/lesson/ 390 ok sw 390 imgs 13 broken 0 lava 0 errors 0
+LIVE tr/ 1440 ok sw 1440 imgs 30 broken 0 lava 4 errors 0
+LIVE tr/ 834 ok sw 834 imgs 30 broken 0 lava 4 errors 0
+LIVE tr/ 390 ok sw 390 imgs 30 broken 0 lava 4 errors 0
+LIVE tr/lesson/ 1440 ok sw 1440 imgs 13 broken 0 lava 0 errors 0
+LIVE tr/lesson/ 834 ok sw 834 imgs 13 broken 0 lava 0 errors 0
+LIVE tr/lesson/ 390 ok sw 390 imgs 13 broken 0 lava 0 errors 0
+LIVE redirect /  ok https://stellasdeutsch-dev.github.io/kw-07-beach/en/
+LIVE redirect /lesson/  ok https://stellasdeutsch-dev.github.io/kw-07-beach/en/lesson/

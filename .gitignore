@@ -8,3 +8,7 @@ qa/figma/call_*.js
 qa/figma/data_*.js
 qa/figma/*.json
 qa/figma/figma_*.png
+qa/figma/png2/
+qa/figma/blob/
+qa/figma/_*.txt
+qa/raw/cut2/parts/

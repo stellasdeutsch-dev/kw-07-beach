@@ -164,7 +164,7 @@ const data = await p.evaluate(() => {
 // округлить числа, чтобы данные были короче
 const round = o => JSON.parse(JSON.stringify(o, (k, v) => typeof v === 'number' ? Math.round(v * 100) / 100 : v));
 const res = round(data);
-const name = (page ? 'lesson' : 'main') + '_' + w;
+const name = page.replace(/\//g, '_').replace(/_$/, '') + '_' + w;
 writeFileSync(new URL('./' + name + '.json', import.meta.url), JSON.stringify(res));
 console.log(name, JSON.stringify(res).length, res.blocks.map(b => b.name + ':' + JSON.stringify(b.tree).length).join(' '));
 await b.close();
