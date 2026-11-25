@@ -1,6 +1,6 @@
-LIVE / 1440 ok scrollWidth 1440 imgs 30 broken 0 lava-links 6 console-errors 0
-LIVE / 834 ok scrollWidth 834 imgs 30 broken 0 lava-links 6 console-errors 0
-LIVE / 390 ok scrollWidth 390 imgs 30 broken 0 lava-links 6 console-errors 0
-LIVE lesson/ 1440 ok scrollWidth 1440 imgs 13 broken 0 lava-links 0 console-errors 0
-LIVE lesson/ 834 ok scrollWidth 834 imgs 13 broken 0 lava-links 0 console-errors 0
-LIVE lesson/ 390 ok scrollWidth 390 imgs 13 broken 0 lava-links 0 console-errors 0
+LIVE / 1440 ok scrollWidth 1440 imgs 30 broken 0 lava 6 errors 0
+LIVE / 834 ok scrollWidth 834 imgs 30 broken 0 lava 6 errors 0
+LIVE / 390 ok scrollWidth 390 imgs 30 broken 0 lava 6 errors 0
+LIVE lesson/ 1440 ok scrollWidth 1440 imgs 13 broken 0 lava 0 errors 0
+LIVE lesson/ 834 ok scrollWidth 834 imgs 13 broken 0 lava 0 errors 0
+LIVE lesson/ 390 ok scrollWidth 390 imgs 13 broken 0 lava 0 errors 0
