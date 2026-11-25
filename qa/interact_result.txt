@@ -1,0 +1,12 @@
+{
+ "faqOpen": true,
+ "faqClose": true,
+ "galleryPage2": true,
+ "lightboxOpen": true,
+ "lightboxEsc": true,
+ "menuOpen": 6,
+ "menuNav": 0,
+ "reducedMotion": true,
+ "lessonNoAd": true,
+ "errors": []
+}

@@ -1,0 +1,28 @@
+// Клики: FAQ, галерея, лайтбокс, меню, reduced motion. node qa/interact.mjs
+import { chromium } from '/Users/shyngysnarseyit/Downloads/alterna/pdf-guides/node_modules/playwright/index.mjs';
+const b = await chromium.launch({ channel: 'chrome', args: ['--mute-audio'] });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+const errs = []; p.on('pageerror', e => errs.push(e.message));
+await p.goto('http://localhost:4707/', { waitUntil: 'networkidle' });
+const r = {};
+await p.click('.qa:nth-child(1) .qa__q'); await p.waitForTimeout(400);
+r.faqOpen = await p.$eval('.qa:nth-child(1)', e => e.classList.contains('is-open') && e.querySelector('.qa__a').getBoundingClientRect().height > 20);
+await p.click('.qa:nth-child(1) .qa__q'); await p.waitForTimeout(400);
+r.faqClose = await p.$eval('.qa:nth-child(1)', e => !e.classList.contains('is-open'));
+await p.click('[data-step="1"]'); await p.waitForTimeout(300);
+r.galleryPage2 = await p.$eval('.gpage[data-page="1"]', e => !e.hidden);
+await p.click('.gpage[data-page="1"] .shot__btn'); await p.waitForTimeout(300);
+r.lightboxOpen = await p.$eval('.lb', e => !e.hidden && e.querySelector('img').src.includes('shot_'));
+await p.keyboard.press('Escape'); await p.waitForTimeout(200);
+r.lightboxEsc = await p.$eval('.lb', e => e.hidden);
+await p.evaluate(() => scrollTo(0, 0)); await p.click('.hdr__burger'); await p.waitForTimeout(200);
+r.menuOpen = await p.$eval('.menu', e => !e.hidden && e.querySelectorAll('a').length);
+await p.click('.menu a[href="#faq"]'); await p.waitForTimeout(2500);
+r.menuNav = await p.evaluate(() => Math.round(document.querySelector("#faq").getBoundingClientRect().top));
+const q = await b.newPage({ viewport: { width: 390, height: 800 }, reducedMotion: 'reduce' });
+await q.goto('http://localhost:4707/lesson/', { waitUntil: 'networkidle' });
+r.reducedMotion = await q.evaluate(() => getComputedStyle(document.querySelector('.ring')).animationName === 'none' && getComputedStyle(document.querySelector('.reveal')).opacity === '1');
+r.lessonNoAd = await q.evaluate(() => !document.querySelector('#inside,#includes,#faq,a[href*="lava.top"]') && !!document.querySelector('#end'));
+r.errors = errs;
+console.log(JSON.stringify(r, null, 1));
+await b.close();
