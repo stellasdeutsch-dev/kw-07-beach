@@ -29,6 +29,7 @@ def pk(n):
     if n.get('m'): o['m']=[round(v,4) for v in n['m']]
     if k=='i': o['src']=n['src']; o['fit']=n['fit'][0]
     if k=='s': o['ic']=n['ic']; o['sc']=hx(n['sc']) if n.get('sc') and n['sc'][3]>0 else None; o['fc']=hx(n['fc']) if n.get('fc') and n['fc'][3]>0 else None; o['sw']=n['sw']
+    if k=='sv': o['svg']=n['svg']
     if k=='rg': o.update(text=n['text'],fc=hx(n['fc']),fs=n['fs'],fw=n['fw'],ls=n['ls'])
     if k=='sc': o.update(fc=hx(n['fc']),sc=hx(n['sc']),sw=n['sw'])
     if k=='t':

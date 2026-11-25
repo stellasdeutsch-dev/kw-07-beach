@@ -98,4 +98,6 @@ QA (`qa/check.mjs`) сверяет каждую картинку страниц�
 | `who-laptop.webp` | tr | `генерация ElevenLabs, лист предметов (qa/raw/v3/who.png)` | людей нет |
 | `who-passport.webp` | tr | `генерация ElevenLabs, лист предметов (qa/raw/v3/who.png)` | людей нет |
 | `author-dias.webp` | en | `~/dias/shared/dias-photos-web/dias-IMG_3119.webp` | Диас |
+| `lang-en.webp` | en | `генерация ElevenLabs, натюрморт по теме английского (qa/raw/v4/lang-en_raw.png)` | людей нет |
 | `author-timur.webp` | tr | `~/dias/timur-video/IMG_2827.HEIC` | Тимур |
+| `lang-tr.webp` | tr | `генерация ElevenLabs, натюрморт по теме турецкого (qa/raw/v4/lang-tr_raw.png)` | людей нет |

@@ -15,13 +15,13 @@ const data = await p.evaluate(() => {
     badge: 'Бейдж', pill: 'Плашка', btn: 'Кнопка', btn__ic: 'Иконка кнопки', btn__tx: 'Текст кнопки', row: 'Вывод и кнопка', row__btns: 'Кнопки',
     'who-list': 'Карточки', who: 'Карточка', who__card: 'Карточка', who__pic: 'Фон персонажа', who__base: 'Подставка',
     points: 'Пункты и телефон', points__col: 'Колонка пунктов', point: 'Пункт', num: 'Номер', phone: 'Телефон', phone__screen: 'Экран', chat__head: 'Шапка чата', chat__ava: 'Аватар', chat__body: 'Сообщения', msg: 'Сообщение',
-    pills: 'Плашки', opill: 'Плашка', checks__bg: 'Фото фона', checks: 'Карточки', check: 'Карточка', check__ic: 'Галочка',
+    pills: 'Плашки', opill: 'Плашка', checks__bg: 'Фото фона', checks: 'Карточки', check: 'Карточка', check__ic: 'Иконка карточки',
     steps: 'Шаги', steps__stage: 'Подиум', step: 'Шаг', step__tab: 'Вкладка', step__card: 'Карточка шага',
     gallery: 'Скриншоты', gpage: 'Страница галереи', shot: 'Скриншот', shot__btn: 'Рамка скриншота', shot__tag: 'Метка', shot__zoom: 'Увеличить', gnav: 'Листалка', gnav__arr: 'Стрелка', dot: 'Точка',
     facts: 'Факты', facts__l: 'Факт слева', facts__box: 'Плашка', facts__r: 'Факт справа', facts__stars: 'Звёзды', glink: 'Ссылка',
     pains: 'Карточки', pain: 'Карточка', pain__x: 'Крестик', promise: 'Золотая плашка', inc: 'Две платформы', inc__card: 'Карточка платформы', inc__list: 'Список', inc__star: 'Звезда',
     ticket: 'Билет', promo__bg: 'Фото баннера', promo__in: 'Бейдж покупки', pbadge: 'Бейдж', pbadge__btns: 'Кнопки', bonuses: 'Карточки', bonus: 'Карточка',
-    faq: 'Вопросы', qa: 'Вопрос', qa__q: 'Строка вопроса', qa__a: 'Ответ', qa__ic: 'Значок вопроса', wrap: 'Контейнер', ftr: 'Подвал'
+    faq: 'Вопросы', faq__pic: 'Картинка по теме языка', pt__ic: 'Иконка пункта', facts__ic: 'Иконка факта', chips: 'Плашки условий', inc__ic: 'Иконка пункта', step__time: 'Когда', count: 'Счётчик', qa: 'Вопрос', qa__q: 'Строка вопроса', qa__a: 'Ответ', qa__ic: 'Иконка вопроса', wrap: 'Контейнер', ftr: 'Подвал'
   };
   const nameOf = el => {
     if (el.dataset && el.dataset.block) return el.dataset.block;
@@ -99,6 +99,12 @@ const data = await p.evaluate(() => {
       if (bw) { ic.x += bw + pd; ic.y += bw + pd; ic.w -= 2 * (bw + pd); ic.h -= 2 * (bw + pd); return { k: 'f', n: 'Рамка иконки', ...base, r: [px(cs.borderTopLeftRadius), px(cs.borderTopLeftRadius), px(cs.borderTopLeftRadius), px(cs.borderTopLeftRadius)], st: [bw, col(cs.borderTopColor), ''], c: [ic] }; }
       const bg = col(cs.backgroundColor); if (bg && bg[3] > 0) { ic.x += px(cs.paddingLeft); ic.y += px(cs.paddingTop); ic.w -= px(cs.paddingLeft) * 2; ic.h -= px(cs.paddingTop) * 2; return { k: 'f', n: 'Плашка иконки', ...base, f: [{ t: 's', c: bg }], r: [px(cs.borderTopLeftRadius), px(cs.borderTopLeftRadius), px(cs.borderTopLeftRadius), px(cs.borderTopLeftRadius)], c: [ic] }; }
       return ic;
+    }
+    if (el.classList.contains('step__arrow')) {
+      const vb = el.getAttribute('viewBox'); const vw = +vb.split(' ')[2]; const flip = /matrix\(-1/.test(cs.transform);
+      const inner = [...el.querySelectorAll('path')].map(p => '<path d="' + p.getAttribute('d') + '"/>').join('');
+      const c = col(cs.stroke); const hex = '#' + c.slice(0, 3).map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
+      return { k: 'sv', n: 'Стрелка к следующему шагу', ...base, svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb + '" fill="none" stroke="' + hex + '" stroke-width="' + px(cs.strokeWidth) + '" stroke-linecap="round" stroke-linejoin="round">' + (flip ? '<g transform="translate(' + vw + ',0) scale(-1,1)">' + inner + '</g>' : inner) + '</svg>' };
     }
     if (el.classList.contains('ring')) { const t = el.querySelector('text'); const tc = getComputedStyle(t); return { k: 'rg', n: 'Кольцо с текстом', ...base, text: t.textContent, fc: col(tc.fill), fs: px(tc.fontSize), fw: +tc.fontWeight, ls: px(tc.letterSpacing) }; }
     const pth = el.querySelector('path'); const pc = getComputedStyle(pth);
