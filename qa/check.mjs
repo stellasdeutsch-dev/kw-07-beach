@@ -24,7 +24,7 @@ for (const page of ['en/', 'tr/']) {
     for (const n of [1, 2, 0]) { const d = await p.$('[data-go="' + n + '"]'); if (d) { await d.click(); await p.waitForTimeout(500); } }
     await p.waitForLoadState('networkidle'); await p.waitForTimeout(600);
     const r = await p.evaluate(() => {
-      const imgs = [...document.images].filter(i => !i.closest('.lb'));
+      const imgs = [...document.images];
       const broken = imgs.filter(i => !(i.complete && i.naturalWidth > 0)).map(i => i.getAttribute('src'));
       const lava = [...document.querySelectorAll('a[href*="lava.top"]')].map(a => a.href);
       const wide = [...document.querySelectorAll('body *')].filter(e => { const r = e.getBoundingClientRect(); return r.right > document.documentElement.clientWidth + 1 && getComputedStyle(e).position !== 'fixed' && !e.closest('.ribbon,.hero__bg,.checks__bg,.promo__bg,.lb'); }).slice(0, 5).map(e => e.className || e.tagName);

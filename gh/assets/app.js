@@ -128,7 +128,7 @@
     var pages = b.pages.map(function (pg, pi) {
       return '<div class="gpage' + (pi ? "" : " is-on") + '" data-page="' + pi + '"' + (pi ? " hidden" : "") + ">" + pg.map(function (c) {
         return '<figure class="shot"><button class="shot__btn" type="button" data-full="' + src(c.img) + '" data-cap="' + esc(c.caption) + '" aria-label="Открыть крупно: ' + esc(c.caption) + '">' +
-          img(c.img, c.caption, 720, 1000) + '<span class="shot__tag">' + esc(c.tag) + '</span><span class="shot__zoom">' + icon("expand") + "</span></button><figcaption>" + esc(c.caption) + "</figcaption></figure>";
+          img(c.img, c.caption, 720, 1000).replace(' loading="lazy"', "") + '<span class="shot__tag">' + esc(c.tag) + '</span><span class="shot__zoom">' + icon("expand") + "</span></button><figcaption>" + esc(c.caption) + "</figcaption></figure>";
       }).join("") + "</div>";
     }).join("");
     var dots = b.pages.map(function (_, i) { return '<button type="button" class="dot' + (i ? "" : " is-on") + '" data-go="' + i + '" aria-label="Страница ' + (i + 1) + '"></button>'; }).join("");
@@ -195,7 +195,7 @@
 
   var html = header() + "<main>" + C.blocks.filter(visible).map(function (b) { return R[b.type] ? R[b.type](b) : ""; }).join("") + "</main>" +
     '<footer class="ftr" data-block="Подвал"><div class="wrap">' + esc(C.footer) + "</div></footer>" +
-    '<div class="lb" hidden role="dialog" aria-modal="true" aria-label="Скриншот крупно"><button class="lb__x" type="button" aria-label="Закрыть">' + icon("close") + '</button><figure><img alt=""><figcaption></figcaption></figure></div>';
+    '<div class="lb" hidden role="dialog" aria-modal="true" aria-label="Скриншот крупно"><button class="lb__x" type="button" aria-label="Закрыть">' + icon("close") + '</button><figure><figcaption></figcaption></figure></div>';
   document.getElementById("app").innerHTML = html;
   document.title = PAGE === "lesson" ? C.meta.lessonTitle : C.meta.title;
 
@@ -233,11 +233,11 @@
   }
 
   // лайтбокс
-  var lb = root.querySelector(".lb"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector("figcaption"), lastBtn = null;
-  function closeLb() { lb.hidden = true; document.documentElement.classList.remove("no-scroll"); if (lastBtn) lastBtn.focus(); }
+  var lb = root.querySelector(".lb"), lbFig = lb.querySelector("figure"), lbCap = lb.querySelector("figcaption"), lbImg = null, lastBtn = null;
+  function closeLb() { lb.hidden = true; if (lbImg) { lbImg.remove(); lbImg = null; } document.documentElement.classList.remove("no-scroll"); if (lastBtn) lastBtn.focus(); }
   root.addEventListener("click", function (e) {
     var s = e.target.closest(".shot__btn");
-    if (s) { lastBtn = s; lbImg.src = s.dataset.full; lbImg.alt = s.dataset.cap; lbCap.textContent = s.dataset.cap; lb.hidden = false; document.documentElement.classList.add("no-scroll"); lb.querySelector(".lb__x").focus(); }
+    if (s) { lastBtn = s; if (!lbImg) { lbImg = document.createElement("img"); lbFig.insertBefore(lbImg, lbCap); } lbImg.src = s.dataset.full; lbImg.alt = s.dataset.cap; lbCap.textContent = s.dataset.cap; lb.hidden = false; document.documentElement.classList.add("no-scroll"); lb.querySelector(".lb__x").focus(); }
   });
   lb.addEventListener("click", function (e) { if (e.target === lb || e.target.closest(".lb__x")) closeLb(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") { if (!lb.hidden) closeLb(); if (!menuEl.hidden) setMenu(false); } });
